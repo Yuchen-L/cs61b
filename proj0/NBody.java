@@ -53,7 +53,6 @@ public class NBody {
 		double Ts = 0;
 		double[] xForce = new double[pl.length];
 		double[] yForce = new double[pl.length];
-		System.out.println(pl.length);
 		while(Ts <= T) {
 
 			for(int i =0; i<pl.length; i++) {
