@@ -1,7 +1,6 @@
 import java.lang.Math;
 
 public class NBody {
-	public static String imgtodraw = "./images/starfield.jpg";
 
 	public static double readRadius(String filename) {
 		In in = new In(filename);
@@ -37,6 +36,8 @@ public class NBody {
 
 		double radius = readRadius(filename);
 		Planet[] pl = readPlanets(filename);
+		String imgtodraw = "./images/starfield.jpg";
+
 		StdDraw.enableDoubleBuffering();
 
 
@@ -64,7 +65,7 @@ public class NBody {
 				pl[i].update(dt, xForce[i], yForce[i]);
 			}
 
-			StdDraw.picture(0,0, NBody.imgtodraw);
+			StdDraw.picture(0,0, imgtodraw);
 			for(Planet p : pl) {
 				p.draw();
 			}
