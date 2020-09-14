@@ -82,8 +82,23 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        if((A == null) && (B == null)) {
+            return null;
+        } else {
+            if(A == null) {
+                return B;
+            }
+        }
+
+        IntList res = A ;   //make a pointer point to the start of A
+        while(A.rest != null) {
+            A = A.rest;
+        }
+        A.rest = B;         //find the end of A and concatenate B to it
+        return res;
     }
+
+
 
     /**
      * Returns a list consisting of the elements of A followed by the
@@ -91,30 +106,57 @@ public class IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        if((A == null) && (B == null)) {
+            return null;
+        } else {
+            if(A == null) {
+                return B;
+            }
+        }
+
+
+        IntList ptr = new IntList(A.first, null);
+        IntList res = ptr;
+        while(A.rest != null){
+            A = A.rest;
+            ptr.rest = new IntList(A.first, null);
+            ptr = ptr.rest;
+        }
+        ptr.rest = B;
+        return res;
     }
 
 
+    /** recursive version
+    public static IntList catenate(IntList A, IntList B) {
+        if (A == null) {
+            return B;
+        }
 
+        return new IntList(A.first, catenate(A.rest, B) );
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * DO NOT MODIFY ANYTHING BELOW THIS LINE! Many of the concepts below here
-     * will be introduced later in the course or feature some form of advanced
-     * trickery which we implemented to help make your life a little easier for
-     * the lab.
      */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /**
+         * DO NOT MODIFY ANYTHING BELOW THIS LINE! Many of the concepts below here
+         * will be introduced later in the course or feature some form of advanced
+         * trickery which we implemented to help make your life a little easier for
+         * the lab.
+         */
 
     @Override
     public int hashCode() {
