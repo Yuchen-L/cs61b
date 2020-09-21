@@ -27,12 +27,12 @@ public class LinkedListDeque<T> {
         size = 1;
     }
 
-    public LinkedListDeque(LinkedListDeque other) {
-        for (int i = other.size; i > 0 ; i--) {
-            T item_o = (T) other.get(i);
-            this.addFirst(item_o);
-        }
-    }
+//    public LinkedListDeque(LinkedListDeque other) {
+//        for (int i = other.size; i > 0 ; i--) {
+//            T item_o = (T) other.get(i);
+//            this.addFirst(item_o);
+//        }
+//    }
 
 
     public void addFirst(T item) {

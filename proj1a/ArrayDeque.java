@@ -12,26 +12,24 @@ public class ArrayDeque<T> {
         nextlast = pointer + 1;
     }
 
-    public ArrayDeque(ArrayDeque other) {
-        items = (T[]) new Object [other.size];
-
-        size = 0;
-
-        if ((other.nextlast > other.nextfirst) && (other.size != other.items.length)) {
-            System.arraycopy(other.items, other.nextfirst + 1, items, 1, size);
-            size += other.size;
-            nextfirst = items.length - 1;
-            nextlast = size;
-        } else {
-            System.arraycopy(other.items, other.nextfirst + 1, items, 0, other.items.length - other.nextfirst - 1);
-            System.arraycopy(other.items, 0, items, other.items.length - other.nextfirst - 1, other.nextlast);
-            size += other.size;
-            nextfirst = items.length - 1;
-            nextlast = size;
-        }
-
-
-    }
+//    public ArrayDeque(ArrayDeque other) {
+//        items = (T[]) new Object [other.size];
+//
+//        size = 0;
+//
+//        if ((other.nextlast > other.nextfirst) && (other.size != other.items.length)) {
+//            System.arraycopy(other.items, other.nextfirst + 1, items, 1, size);
+//            size += other.size;
+//            nextfirst = items.length - 1;
+//            nextlast = size;
+//        } else {
+//            System.arraycopy(other.items, other.nextfirst + 1, items, 0, other.items.length - other.nextfirst - 1);
+//            System.arraycopy(other.items, 0, items, other.items.length - other.nextfirst - 1, other.nextlast);
+//            size += other.size;
+//            nextfirst = items.length - 1;
+//            nextlast = size;
+//        }
+//    }
 
     private int onePlus(int index) {
         if (index == items.length - 1) {
@@ -113,9 +111,10 @@ public class ArrayDeque<T> {
         T tmp = items[nextfirst];
         items[nextfirst] = null;
         size -= 1;
-        if (size > 16 && ((float) size / items.length < 0.25)) {
-            resize(size / 2);
+        if (items.length >= 16 && ((float) size / items.length < 0.25)) {
+            resize(items.length / 2);
         }
+
         return tmp;
     }
 
