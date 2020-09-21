@@ -124,8 +124,8 @@ public class ArrayDeque<T> {
             return null;
         }
         nextlast = oneMinus(nextlast);
-        T tmp = items[size - 1];
-        items[size - 1] = null;
+        T tmp = items[nextlast];
+        items[nextlast] = null;
         size -= 1;
         if (size > 16 && ((float) size / items.length < 0.25)) {
             resize(size / 2);
@@ -144,16 +144,17 @@ public class ArrayDeque<T> {
 
     private void resize(int Index) {
         T[] tmp = (T[]) new Object[Index];
-        if ((nextlast > nextfirst) && (size != items.length)) {
-            System.arraycopy(items, nextfirst + 1, tmp, 0, size);
-            nextfirst = Index - 1;
-            nextlast = size;
+        int currentfirst = onePlus(nextfirst);
+        int currenlast = oneMinus(nextlast);
+
+        if (currenlast > currentfirst) {
+            System.arraycopy(items, currentfirst, tmp, 0, size);
         } else {
-            System.arraycopy(items, nextfirst + 1, tmp, 0, items.length - nextfirst - 1);
-            System.arraycopy(items, 0, tmp, items.length - nextfirst, nextlast);
-            nextfirst = Index - 1;
-            nextlast = size;
+            System.arraycopy(items, currentfirst, tmp, 0, items.length - currentfirst);
+            System.arraycopy(items, 0, tmp, items.length -  currenlast - 1, currenlast + 1);
         }
+        nextfirst = Index - 1;
+        nextlast = size;
         items = tmp;
     }
 
