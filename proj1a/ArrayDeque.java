@@ -145,27 +145,29 @@ public class ArrayDeque<T> {
     private void resize(int Index) {
         T[] tmp = (T[]) new Object[Index];
         if ((nextlast > nextfirst) && (size != items.length)) {
-            System.arraycopy(items, nextfirst + 1, tmp, 1, size);
-            nextfirst = 0;
-            nextlast = size + 1;
+            System.arraycopy(items, nextfirst + 1, tmp, 0, size);
+            nextfirst = Index - 1;
+            nextlast = size;
         } else {
-            System.arraycopy(items, nextfirst + 1, tmp, 1, items.length - nextfirst - 1);
+            System.arraycopy(items, nextfirst + 1, tmp, 0, items.length - nextfirst - 1);
             System.arraycopy(items, 0, tmp, items.length - nextfirst, nextlast);
-            nextfirst = 0;
-            nextlast = size + 1;
+            nextfirst = Index - 1;
+            nextlast = size;
         }
         items = tmp;
     }
 
-//    public static void main(String[] args) {
-//        ArrayDeque<Integer> ad = new ArrayDeque<>();
-//
-//        for (int i = 0; i < 32 ; i++) {
-//            ad.addFirst(10);
-//        }
-//        ArrayDeque<Integer> ad1 = new ArrayDeque<>(ad);
+    public static void main(String[] args) {
+        ArrayDeque<Integer> ad = new ArrayDeque<>();
+
+        for (int i = 0; i < 9 ; i++) {
+            ad.addFirst(10);
+        }
+        ArrayDeque<Integer> ad1 = new ArrayDeque<>(ad);
+        ad1.removeFirst();
+        ad1.removeLast();
 //        System.out.println(ad1.nextlast);
 //        System.out.println(ad1.nextfirst);
-//        System.out.println(ad1.size());
-//    }
+        System.out.println(ad1.size());
+    }
 }
