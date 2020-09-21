@@ -3,11 +3,11 @@ public class LinkedListDeque<T> {
     private int size;
 
     private class Node {
-        public Node prev;
-        public T item;
-        public Node next;
+        private Node prev;
+        private T item;
+        private Node next;
 
-        public Node (Node p, T i, Node n) {
+        private Node(Node p, T i, Node n) {
             prev = p;
             item = i;
             next = n;
@@ -15,20 +15,20 @@ public class LinkedListDeque<T> {
     }
 
     public LinkedListDeque() {
-        sentinel = new Node(null, null ,null);
+        sentinel = new Node(null, null, null);
         sentinel.prev = sentinel;
         sentinel.next = sentinel;
         size = 0;
     }
 
-    public LinkedListDeque(T i) {
-        sentinel = new Node(null, null , null);
-        sentinel.prev = sentinel.next = new Node(sentinel, i, sentinel);
-        size = 1;
-    }
+//    public LinkedListDeque(T i) {
+//        sentinel = new Node(null, null, null);
+//        sentinel.prev = sentinel.next = new Node(sentinel, i, sentinel);
+//        size = 1;
+//    }
 
 //    public LinkedListDeque(LinkedListDeque other) {
-//        for (int i = other.size; i > 0 ; i--) {
+//        for (int i = other.size; i > 0; i--) {
 //            T item_o = (T) other.get(i);
 //            this.addFirst(item_o);
 //        }
@@ -61,13 +61,13 @@ public class LinkedListDeque<T> {
     }
 
     public void printDeque() {
-        for (Node i = sentinel.next; i != sentinel ; i = i.next) {
+        for (Node i = sentinel.next; i != sentinel; i = i.next) {
             System.out.print(i.item + " ");
         }
         System.out.println();
     }
 
-    public T removeFirst(){
+    public T removeFirst() {
         if (size == 0) {
             return null;
         }
@@ -101,7 +101,7 @@ public class LinkedListDeque<T> {
         return tmp.item;
     }
 
-    public T getRecursive(int index){
+    public T getRecursive(int index) {
         return getRecursiveHelper(sentinel, index);
     }
 
@@ -110,7 +110,7 @@ public class LinkedListDeque<T> {
         if (index == 0) {
             return tmp.item;
         }
-        return getRecursiveHelper(n.next, index-1);
+        return getRecursiveHelper(n.next, index - 1);
     }
 
 

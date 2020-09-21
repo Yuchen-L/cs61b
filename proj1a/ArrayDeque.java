@@ -23,8 +23,10 @@ public class ArrayDeque<T> {
 //            nextfirst = items.length - 1;
 //            nextlast = size;
 //        } else {
-//            System.arraycopy(other.items, other.nextfirst + 1, items, 0, other.items.length - other.nextfirst - 1);
-//            System.arraycopy(other.items, 0, items, other.items.length - other.nextfirst - 1, other.nextlast);
+//            System.arraycopy(other.items, other.nextfirst +
+//                             1, items, 0, other.items.length - other.nextfirst - 1);
+//            System.arraycopy(other.items, 0, items, other.items.length -
+//                             other.nextfirst - 1, other.nextlast);
 //            size += other.size;
 //            nextfirst = items.length - 1;
 //            nextlast = size;
@@ -133,16 +135,16 @@ public class ArrayDeque<T> {
 
     }
 
-    public T get(int Index) {
+    public T get(int index) {
         int tmp = nextfirst;
-        for (int i = 0; i <= Index; i++) {
+        for (int i = 0; i <= index; i++) {
             tmp = onePlus(tmp);
         }
         return items[tmp];
     }
 
-    private void resize(int Index) {
-        T[] tmp = (T[]) new Object[Index];
+    private void resize(int index) {
+        T[] tmp = (T[]) new Object[index];
         int currentfirst = onePlus(nextfirst);
         int currenlast = oneMinus(nextlast);
 
@@ -150,9 +152,10 @@ public class ArrayDeque<T> {
             System.arraycopy(items, currentfirst, tmp, 0, size);
         } else {
             System.arraycopy(items, currentfirst, tmp, 0, items.length - currentfirst);
-            System.arraycopy(items, 0, tmp, items.length -  currenlast - 1, currenlast + 1);
+            System.arraycopy(items, 0, tmp, items.length -
+                             currenlast - 1, currenlast + 1);
         }
-        nextfirst = Index - 1;
+        nextfirst = index - 1;
         nextlast = size;
         items = tmp;
     }
