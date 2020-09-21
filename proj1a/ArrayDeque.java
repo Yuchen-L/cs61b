@@ -157,17 +157,4 @@ public class ArrayDeque<T> {
         items = tmp;
     }
 
-    public static void main(String[] args) {
-        ArrayDeque<Integer> ad = new ArrayDeque<>();
-
-        for (int i = 0; i < 9 ; i++) {
-            ad.addFirst(10);
-        }
-        ArrayDeque<Integer> ad1 = new ArrayDeque<>(ad);
-        ad1.removeFirst();
-        ad1.removeLast();
-//        System.out.println(ad1.nextlast);
-//        System.out.println(ad1.nextfirst);
-        System.out.println(ad1.size());
-    }
 }
