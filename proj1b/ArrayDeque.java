@@ -7,7 +7,7 @@
  *  proportional to the number of items.
  * @Rule: For Arrays of length 16 or more, the usage factor should always be at least 25%.
  */
-public class ArrayDeque<T> {
+public class ArrayDeque<T> implements Deque<T> {
 
     private static int initialCapacity = 8; // The stating length of array
     private static int eFactor = 2; // Expanding factor
@@ -30,6 +30,7 @@ public class ArrayDeque<T> {
     }
 
     /** Returns true if deque is empty, false otherwise */
+    @Override
     public boolean isEmpty() {
         if (size == 0) {
             return true;
@@ -40,6 +41,7 @@ public class ArrayDeque<T> {
     /** Returns the number of items in the deque
      * @Rule: Must take constant time;
      */
+    @Override
     public int size() {
         return size;
     }
@@ -62,6 +64,7 @@ public class ArrayDeque<T> {
     }
 
     /** Prints the items in the deque from front to last, separated by a space */
+    @Override
     public void printDeque() {
         int currentIndex = onePlus(nextFirst);
         while (currentIndex != nextLast) {
@@ -75,6 +78,7 @@ public class ArrayDeque<T> {
      * and so forth. If no such items exists, returns null.
      * @Rule: A single operation must be executed in constant time.
      */
+    @Override
     public T get(int index) {
         if (index >= size) {
             return null;
@@ -131,6 +135,7 @@ public class ArrayDeque<T> {
      * @Rule: A single operation should be executed in constant time,
      *  except during resizing operation.
      * */
+    @Override
     public void addFirst(T item) {
         items[nextFirst] = item;
         nextFirst = oneMinus(nextFirst);
@@ -143,6 +148,7 @@ public class ArrayDeque<T> {
      * @Rule: A single operation should be executed in constant time,
      *  except during resizing operation.
      * */
+    @Override
     public void addLast(T item) {
         items[nextLast] = item;
         nextLast = onePlus(nextLast);
@@ -155,6 +161,7 @@ public class ArrayDeque<T> {
      * @Rule: A single operation should be executed in constant time,
      *  except during resizing operation.
      */
+    @Override
     public T removeFirst() {
         if (isEmpty()) {
             return null;
@@ -175,6 +182,7 @@ public class ArrayDeque<T> {
      * @Rule: A single operation should be executed in constant time,
      *  except during resizing operation.
      */
+    @Override
     public T removeLast() {
         if (isEmpty()) {
             return null;

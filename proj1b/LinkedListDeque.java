@@ -5,7 +5,7 @@
  * @Rule: The amount of memory that this program uses at any given time must be
  *  proportional to the number of items.
  */
-public class LinkedListDeque<T> {
+public class LinkedListDeque<T> implements Deque<T> {
 
     private class Node {
         T item;
@@ -31,6 +31,7 @@ public class LinkedListDeque<T> {
     }
 
     /** Returns true if deque is empty, false otherwise */
+    @Override
     public boolean isEmpty() {
         if (sentinel.next == sentinel && sentinel.prev == sentinel && size == 0) {
             return true;
@@ -39,11 +40,13 @@ public class LinkedListDeque<T> {
     }
 
     /** Returns the number of items in the deque */
+    @Override
     public int size() {
         return size;
     }
 
     /** Prints the items in the deque from first to last, separated by a space */
+    @Override
     public void printDeque() {
         Node currentNode = sentinel;
         while (currentNode.next != sentinel) {
@@ -56,6 +59,7 @@ public class LinkedListDeque<T> {
     /** Adds an item of type T to the front of the deque.
      * @Rule: A single operation should be executed in constant time.
      * */
+    @Override
     public void addFirst(T item) {
         sentinel.next = new Node(item, sentinel, sentinel.next);
         sentinel.next.next.prev = sentinel.next;
@@ -65,6 +69,7 @@ public class LinkedListDeque<T> {
     /** Adds an item of type T to the back of the deque
      * @Rule: A single operation should be executed in constant time.
      * */
+    @Override
     public void addLast(T item) {
         sentinel.prev = new Node(item, sentinel.prev, sentinel);
         sentinel.prev.prev.next = sentinel.prev;
@@ -74,6 +79,7 @@ public class LinkedListDeque<T> {
     /** Removes and returns the item at the front of the deque. If no such item exists, returns null
      * @Rule: A single operation should be executed in constant time.
      */
+    @Override
     public T removeFirst() {
         if (sentinel.next == sentinel) {
             return null;
@@ -89,6 +95,7 @@ public class LinkedListDeque<T> {
     /** Removes and returns the item at the back of the deque. If no such item exists, returns null
      * @Rule: A single operation should be executed in constant time.
      */
+    @Override
     public T removeLast() {
         if (sentinel.prev == sentinel) {
             return null;
@@ -106,6 +113,7 @@ public class LinkedListDeque<T> {
      * @Rule: not alter the deque !
      * @Rule: Must use iteration !
      */
+    @Override
     public T get(int index) {
         if (index >= size) {
             return null;
